@@ -108,23 +108,38 @@ function createLogin(){
         }
         
         createUserPage(data[0].id,data[0].username)
+
+          
+        signup_button.classList.add("display-invis")
+        login_nav_button.classList.add("display-invis")
+
+        log_out_nav_button.classList.remove("display-invis")
+    
+        
         let add_blogs = document.getElementById("add-blog")
 
         add_blogs.classList.remove("display-invis")
 
         add_blogs.addEventListener("click",()=>{
             bg_container_image.classList.add('bg-img-container')
-            
-            signup_button.classList.add("display-invis")
-            login_nav_button.classList.add("display-invis")
-
-            log_out_nav_button.classList.remove("display-invis")
-        
+          
 
             createPersonalPage(data[0].id,data[0].username)})
      
 
         
+    })
+
+    log_out_nav_button.addEventListener("clikc",e =>{
+
+        signup_button.classList.remove("display-invis")
+        login_nav_button.classList.remove("display-invis")
+
+        log_out_nav_button.classList.add("display-invis")
+        add_blogs.classList.add("display-invis")
+        all_content.innerHTML=""
+        createHomePage()
+    
     })
 
     })
