@@ -558,6 +558,7 @@ function createUserPage(id,personal_user,email,username){
     var new_username;
     edit_email.addEventListener("click",e=>{
         let input_t = document.createElement("input")
+        input_t.setAttribute("id","new_email")
         new_email = input_t
         span_email.remove()
         input_t.value = email
@@ -570,6 +571,7 @@ function createUserPage(id,personal_user,email,username){
     edit_username.addEventListener("click",e=>{
 
         let input_t = document.createElement("input")
+        input_t.setAttribute("id","new_username")
         new_username = input_t
         span_username.remove()
         input_t.value = username
@@ -579,12 +581,14 @@ function createUserPage(id,personal_user,email,username){
     })
 
     save_edits_btn.addEventListener("click",e=>{
+        let value_email = document.getElementById("new_username")
+        let value_username = document.getElementById("new_email")
         fetch(`https://66e8028eb17821a9d9daf072.mockapi.io/users/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
               id: id,
-              username: new_username.value,
-              email:new_email.value
+              username: value_username.value,
+              email:value_email.value
             }),
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
