@@ -1,0 +1,169 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+@import url('https://fonts.cdnfonts.com/css/bubbly-2');
+
+.bg-img-container{
+   
+    background-image: url("bg1.jpg");
+    background-repeat: no-repeat;
+  
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+
+    opacity: 0.6;
+
+    filter: brightness(1px);
+     z-index: -1;
+}
+
+body{
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: antiquewhite;
+}
+
+.main-title{
+    font-size: 2.5em;
+    font-family: 'Bubbly', sans-serif;
+}
+
+.main-container{
+    margin-left: 0.5em;
+   
+    
+}
+
+.clip-circle{
+    clip-path: circle(29.6% at 49% 34%);
+    width: 15em;
+    height: 15em;
+
+    background-image: url("jeff.jpeg");
+    background-size: cover;
+    filter: drop-shadow(1px 1px 1px white);
+
+}
+
+
+.bg-yellow{
+    background-color: rgb(244, 244, 203);
+    border-radius: 40px;
+    border: 2px solid rgb(252, 212, 159);
+}
+
+
+
+.homepage{
+   width: 100%;
+   height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("ground.jpg");
+
+    opacity: 0.5;;
+    filter: grayscale(0.6);
+    position: absolute;
+}
+
+
+.sign-up-card{
+    width: 20em;
+    height: 22em;
+    background-color: blanchedalmond ;
+    text-align: center;
+}
+
+.sign-up-card input{
+   margin: 0.5em;
+}
+
+
+
+.login-card{
+    width: 20em;
+    height: 16em;
+    background-color: blanchedalmond ;
+    text-align: center;
+}
+
+.login-card input{
+   margin: 0.5em;
+}
+
+
+
+
+.enter-blog{
+    width: 35em;
+    background-color: blanchedalmond ;
+    text-align: center;
+    justify-content: center;
+}
+
+.enter-blog input{
+   margin: 0.5em;
+}
+
+
+
+input[type=text],[type=password],[type=email] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #8a410a;
+    background-color: ;
+}
+
+
+.add-blog{
+    background-color: #1ab0ce;
+    color: black;
+    position: fixed;
+    bottom: 5vh;
+    right: 5vh;
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    
+}
+
+.add-blog::before{
+content: url("plus.svg");
+width: 3em;
+height: 3em;
+color: rgb(186, 112, 32) !important;
+
+    
+}
+
+
+
+
+.display-invis{
+    display: none;
+}
+
+.bg-teal{
+    background-color: #1ab0ce;
+    color: white !important;
+    text-decoration: none;
+}
+
+.bg-teal *{
+    background-color: #1ab0ce;
+    color: white !important;
+    text-decoration: none;
+}
+
+.homepage-title{
+    
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 4em;
+    color: #924c1a;
+    -webkit-text-stroke:rgb(242, 202, 24)  1px;
+
+}
