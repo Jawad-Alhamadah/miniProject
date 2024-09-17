@@ -99,14 +99,14 @@ body{
 
 
 .enter-blog{
-    width: 35em;
+    width: 60em;
     background-color: blanchedalmond ;
     text-align: center;
     justify-content: center;
 }
 
 .enter-blog input{
-   margin: 0.5em;
+   margin: 1.5em;
 }
 
 
@@ -160,10 +160,23 @@ color: rgb(186, 112, 32) !important;
 }
 
 .homepage-title{
-    
+
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 4em;
     color: #924c1a;
     -webkit-text-stroke:rgb(242, 202, 24)  1px;
 
 }
+
+
+ .underline-edit{
+    text-decoration: underline;
+    color: #1ab0ce;
+    cursor: pointer;
+font-size: 0.7em !important;
+}
+
+ .underline-edit:hover{
+    color: #07c5eb;
+    
+ }

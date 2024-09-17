@@ -7,6 +7,7 @@ let signup_button = document.getElementById("signup-btn")
 let login_nav_button = document.getElementById("login")
 let bg_container_image = document.getElementById("bg-container-image")
 let home_button = document.getElementById("home-btn")
+let add_blogs = document.getElementById("add-blog")
 
 let log_out_nav_button = document.getElementById("logout")
 signup_button.addEventListener("click",createSignUp) 
@@ -107,7 +108,7 @@ function createLogin(){
             return
         }
         
-        createUserPage(data[0].id,data[0].username)
+        createUserPage(data[0].id,data[0].username,data[0].email , data[0].username)
 
           
         signup_button.classList.add("display-invis")
@@ -116,7 +117,7 @@ function createLogin(){
         log_out_nav_button.classList.remove("display-invis")
     
         
-        let add_blogs = document.getElementById("add-blog")
+       
 
         add_blogs.classList.remove("display-invis")
 
@@ -130,7 +131,7 @@ function createLogin(){
         
     })
 
-    log_out_nav_button.addEventListener("clikc",e =>{
+    log_out_nav_button.addEventListener("click",e =>{
 
         signup_button.classList.remove("display-invis")
         login_nav_button.classList.remove("display-invis")
@@ -138,7 +139,14 @@ function createLogin(){
         log_out_nav_button.classList.add("display-invis")
         add_blogs.classList.add("display-invis")
         all_content.innerHTML=""
-        createHomePage()
+
+        let title = document.createElement('h3')
+        all_content.appendChild(title)
+    
+        title.innerText="Welcome to Our Gardening Blogs"
+        title.classList.add("text-center" , "homepage-title","mt-5")
+        bg_container_image.classList.add('bg-img-container')
+       
     
     })
 
@@ -404,6 +412,7 @@ function createSignUp(){
             .then(data => {
 
                 //createUserPage(container, userNameInput, data.username)
+                console.log("Printing Data")
                 console.log(data)
                 createPersonalPage(data.id,data.username)
 
@@ -425,28 +434,30 @@ function createPersonalPage(id,username){
 
     let submit = document.createElement("button")
 
-    main_content.classList.add("enter-blog")
+    let write_blog_title = document.createElement("h1")
 
+    main_content.classList.add("enter-blog","mt-3")
+    write_blog_title.textContent="Write Your Blog Below: "
     
     all_content.appendChild(main_content)
     
-    
+    main_content.appendChild(write_blog_title)
     main_content.appendChild(title)
     main_content.appendChild(input_blog)
     main_content.appendChild(submit)
 
     main_content.classList.add("row","mt-5")
-    submit.textContent="submit"
+    submit.textContent="Post"
 
     title.setAttribute("placeholder","enter your title")
-    input_blog.setAttribute("placeholder","text....")
+    input_blog.setAttribute("placeholder","Blog Content.....")
 
     input_blog.setAttribute("rows","7")
     input_blog.setAttribute("cols","50")
 
-    title.classList.add("col-9")
-    input_blog.classList.add("col-9")
-    submit.classList.add("col-9")
+    title.classList.add("col-9","mt-3")
+    input_blog.classList.add("col-9","mt-3")
+    submit.classList.add("col-7" ,"mt-3","btn" ,"btn-info","mb-4",'align-self-end')
     input_blog.style.resize="none"
 
 
@@ -485,19 +496,103 @@ title.classList.add("text-center" , "homepage-title","mt-5")
 bg_container_image.classList.add('bg-img-container')
 
 
-function createUserPage(id,personal_user){
+function createUserPage(id,personal_user,email,username){
     all_content.innerHTML=""
  
     let username_title = document.createElement("h2")
+    let email_title = document.createElement("h5")
+    let all_blogs_title = document.createElement("h2")
+    let secondary_username = document.createElement("h3")
     
+    let edit_email = document.createElement("span")
+    let edit_username = document.createElement("span")
+
+    let span_email = document.createElement('span')
+    let span_username = document.createElement('span') 
+
+    let save_edits_btn = document.createElement("button")
+    save_edits_btn.textContent="Save Edits"
+   
+
+    span_username.textContent= "Username: "+username +" "
+    secondary_username.appendChild(span_username)
+
+    edit_email.textContent="Edit"
+    edit_username.textContent="Edit"
+
+    edit_email.classList.add("underline-edit")
+    edit_username.classList.add("underline-edit")
+
+
+
+
+
+    span_email.textContent = "Email: " +email +" "
+    email_title .appendChild(span_email)
     
     username_title.textContent="Welcome to your personal page, " +  personal_user
-
-
+    all_blogs_title.textContent="Your personal Blogs: "
+    all_blogs_title.classList.add("mb-3","mt-5")
 
     all_content.innerHTML=""
+
+
+    secondary_username.appendChild(edit_username)
+    email_title.appendChild(edit_email)
+    save_edits_btn.classList.add("btn","btn-secondary","col-3")
+
+
+
     all_content.appendChild(username_title)
+
+    all_content.appendChild(secondary_username)
+    all_content.appendChild(email_title)
+
+    all_content.appendChild(save_edits_btn)
+    all_content.appendChild(all_blogs_title)
     bg_container_image.classList.remove('bg-img-container')
+
+    email_title.classList.add("text-center")
+    secondary_username.classList.add("text-center")
+    var new_email;
+    var new_username;
+    edit_email.addEventListener("click",e=>{
+        let input_t = document.createElement("input")
+        new_email = input_t
+        span_email.remove()
+        input_t.value = email
+        email_title.appendChild(input_t)
+        edit_email.remove()
+
+
+
+    })
+    edit_username.addEventListener("click",e=>{
+
+        let input_t = document.createElement("input")
+        new_username = input_t
+        span_username.remove()
+        input_t.value = username
+        secondary_username.appendChild(input_t)
+        edit_username.remove()
+       
+    })
+
+    save_edits_btn.addEventListener("click",e=>{
+        fetch(`https://66e8028eb17821a9d9daf072.mockapi.io/users/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+              id: id,
+              username: new_username.value,
+              email:new_email.value
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          })
+            .then((response) => response.json())
+            .then((json) => console.log(json));
+    })
     fetch(`https://66e8028eb17821a9d9daf072.mockapi.io/blogs/?userId=${id}`)
     .then(res =>res.json())
     .then ( data =>{
@@ -532,7 +627,7 @@ function createUserPage(id,personal_user){
             p_content.style.borderRadius="40px"
             main_div.appendChild(delete_button)
             delete_button.textContent="Delete!"
-            delete_button.classList.add("col-4")
+            delete_button.classList.add("col-4","mb-4")
             
 
             circle_div.classList.add("clip-circle")
